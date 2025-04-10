@@ -1,0 +1,173 @@
+{
+  "DeviceName": "BeeScales.io Compact BT",
+  "DeviceIcon": "https://filemanager.avirings.com/deviceicons/nRF52840DK.png",
+  "SupportEmail": "info@beescales.io",
+  "Website": "https://www.beescales.io",
+  "Company": "Vermis d.o.o.",
+  "Uart": {
+    "LineEnding": "LF",
+    "Commands": [
+      {
+        "Name": "Version",
+        "Command": "$X",
+        "Type": "",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Register beacon 1",
+        "Command": "$BLE_BEACON=1,{0}",
+        "Type": "qr",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Register beacon 2",
+        "Command": "$BLE_BEACON=2,{0}",
+        "Type": "qr",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Tare",
+        "Command": "$SCALE_TARE",
+        "Type": "",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Print weight On",
+        "Command": "$SCALE_PRINT=1",
+        "Type": "",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Print weight Off",
+        "Command": "$SCALE_PRINT=0",
+        "Type": "",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Calibrate weight 20kg",
+        "Command": "$SCALE_CALIBRATE_G=20000",
+        "Type": "",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Scan interval [m]",
+        "Command": "$MEASURE_PERIOD={0}",
+        "Type": "input",
+        "DefaultValue": "60",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Set time",
+        "Command": "$SET_TIME={0}",
+        "Type": "unixlocaltime",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Set morning alarm",
+        "Command": "$SET_ALARM=0,{0}",
+        "Type": "input",
+        "DefaultValue": "0700",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Set evening alarm",
+        "Command": "$SET_ALARM=1,{0}",
+        "Type": "input",
+        "DefaultValue": "2200",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Register display",
+        "Command": "$REGISTER_EPD_MAC={0}",
+        "Type": "input",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Register NFC display",
+        "Command": "$REGISTER_EPD_MAC={0}",
+        "Type": "nfcscan",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Register QR display",
+        "Command": "$REGISTER_EPD_MAC={0}",
+        "Type": "qr",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Display ping",
+        "Command": "$DISP_PING",
+        "Type": "",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Display refresh",
+        "Command": "$DISP_REFRESH",
+        "Type": "",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      },
+      {
+        "Name": "Rename",
+        "Command": "$SET_BLE_NAME={0}",
+        "Type": "input",
+        "DefaultValue": "",
+        "OrderNumber": 0
+      }
+    ]
+  },
+  "Firmwares": [
+    {
+      "Version": "1.03",
+      "DownloadLink": "https://github.com/VermisOrg/BeeScalesFirmware/releases/download/Release/Beescales_BT_v1.03.bin",
+      "Status": 1
+    }
+  ],
+  "DeviceCommands": [],
+  "DisplayProperties": {
+    "DefaultImage": "https://fw.vermis.si/displayimage/bsd1?mac={mac}",
+    "ImageUpload": true,
+    "Width": 300,
+    "Height": 400,
+    "Colors": "#000000",
+    "Protocol": "1.0"
+  },
+  "FsManagers": [
+    {
+      "Name": "Download measurements",
+      "DownloadEnabled": true,
+      "DownloadFileListBasedOnUARTCommand": false,
+      "UARTCommandForFileList": "",
+      "UARTResponseForEndOfFileList": "",
+      "SendToSupport": false,
+      "FileSystemMountPoint": "/lfs1",
+      "DownloadFiles": [
+        "sensor_data_storage/sensor_data_1.csv",
+        "sensor_data_storage/sensor_data_2.csv",
+        "missingfile.csv"
+      ]
+    },
+    {
+      "Name": "Send log to support",
+      "DownloadEnabled": true,
+      "DownloadFileListBasedOnUARTCommand": true,
+      "UARTCommandForFileList": "$FS_LIST=logs",
+      "UARTResponseForEndOfFileList": "!FS_LIST",
+      "SendToSupport": true,
+      "FileSystemMountPoint": "/lfs1",
+      "DownloadFiles": []
+    }
+  ]
+}
